@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<form id="donationForm" method="POST" action="submit_donation.php">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <input type="number" name="amount" placeholder="Amount in NPR" min="1" required />
+  <textarea name="message" placeholder="Message (Optional)"></textarea>
+  <button type="submit">Donate</button>
+</form>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donate for Stray Dogs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8f0;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #ff914d;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #ff914d;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e67300;
+    }
+    .qr-section {
+      text-align: center;
+      margin: 2rem;
+    }
+    .qr-section img {
+      max-width: 300px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: #555;
+    }
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Help Stray Dogs</h1>
+    <p>Your donation can provide food, shelter, and medical care.</p>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Why Donate?</h2>
+      <ul>
+        <li>Feed hungry stray dogs</li>
+        <li>Provide medical treatments</li>
+        <li>Vaccinate and sterilize</li>
+        <li>Support dog shelters and rescues</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Donate Now</h2>
+      <form id="donationForm">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <input type="number" placeholder="Amount in NPR" required />
+        <textarea placeholder="Message (Optional)"></textarea>
+        <button type="submit">Donate</button>
+      </form>
+      <p id="thanksMessage" style="display:none; color: green; font-weight: bold;">
+        Thank you for your support!
+      </p>
+    </div>
+  </main>
+
+  <section class="qr-section">
+    <h2>Scan to Donate</h2>
+    <img src="YOUR_IMAGE_NAME.jpg" alt="QR Codes for Khalti, eSewa, NIC Asia" />
+    <p style="font-weight: bold; margin-top: 0.5rem;">Ujwol Shakya<br>Phone no. 9767234456</p>
+  </section>
+
+  <footer>
+    &copy; <span id="year"></span> DogLife Foundation. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("donationForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("thanksMessage").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("donationForm").reset();
+        document.getElementById("thanksMessage").style.display = "none";
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
