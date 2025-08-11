@@ -1,135 +1,193 @@
-<!DOCTYPE html>
-<form id="donationForm" method="POST" action="submit_donation.php">
-  <input type="text" name="name" placeholder="Your Name" required />
-  <input type="email" name="email" placeholder="Your Email" required />
-  <input type="number" name="amount" placeholder="Amount in NPR" min="1" required />
-  <textarea name="message" placeholder="Message (Optional)"></textarea>
-  <button type="submit">Donate</button>
-</form>
-
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Donate for Stray Dogs</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Professional portfolio template — replace content with your own." />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff8f0;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg:#0f1724; --card:#0b1320; --muted:#9aa4b2; --accent:#06b6d4; --glass: rgba(255,255,255,0.04);
+      --radius:12px; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    header {
-      background-color: #ff914d;
-      color: white;
-      padding: 2rem;
-      text-align: center;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,#071426 0%, var(--bg) 100%);color:#e6eef6;line-height:1.5}
+    .container{max-width:1100px;margin:36px auto;padding:28px}
+    header{display:flex;align-items:center;gap:18px}
+    .avatar{width:96px;height:96px;border-radius:16px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+    h1{margin:0;font-size:28px}
+    p.lead{color:var(--muted);margin:6px 0 0}
+
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:22px;margin-top:26px}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 6px 30px rgba(2,6,23,0.6)}
+
+    /* Left column */
+    .about h2{margin:0 0 10px}
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .skill{background:var(--glass);padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600;font-size:13px}
+    .projects .project{border-radius:10px;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);margin-bottom:12px}
+    .project h3{margin:0;font-size:16px}
+    .project p{color:var(--muted);margin:6px 0 8px}
+    .btn{display:inline-block;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#8b5cf6);color:#021022;text-decoration:none;font-weight:700}
+
+    /* Right column */
+    .contact-list{display:flex;flex-direction:column;gap:8px}
+    .meta{color:var(--muted);font-size:14px}
+
+    footer{margin:28px 0 60px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr}
+      .avatar{width:84px;height:84px}
     }
-    main {
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-    .card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    ul {
-      padding-left: 1.5rem;
-    }
-    input, textarea, button {
-      width: 100%;
-      padding: 0.7rem;
-      margin: 0.5rem 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      background-color: #ff914d;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #e67300;
-    }
-    .qr-section {
-      text-align: center;
-      margin: 2rem;
-    }
-    .qr-section img {
-      max-width: 300px;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.8rem;
-      color: #555;
-    }
-    @media (max-width: 768px) {
-      main {
-        grid-template-columns: 1fr;
-      }
-    }
+
+    /* small helpers */
+    .tag{display:inline-block;background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;color:var(--muted);font-size:13px;margin-right:8px}
+    .timeline{border-left:2px solid rgba(255,255,255,0.04);padding-left:14px}
+    .timeline-item{margin-bottom:14px}
+    .muted{color:var(--muted)}
+
   </style>
 </head>
 <body>
-  <header>
-    <h1>Help Stray Dogs</h1>
-    <p>Your donation can provide food, shelter, and medical care.</p>
-  </header>
+  <div class="container">
+    <header>
+      <div class="avatar" aria-hidden>YN</div>
+      <div>
+        <h1>Your Name</h1>
+        <div class="meta">Full-stack developer • UI/UX enthusiast • Open-source contributor</div>
+        <p class="lead">I build clean, accessible web apps and delightful user experiences. I focus on readable code, fast performance, and practical design.</p>
+      </div>
+    </header>
 
-  <main>
-    <div class="card">
-      <h2>Why Donate?</h2>
-      <ul>
-        <li>Feed hungry stray dogs</li>
-        <li>Provide medical treatments</li>
-        <li>Vaccinate and sterilize</li>
-        <li>Support dog shelters and rescues</li>
-      </ul>
+    <div class="grid">
+      <main>
+        <section class="card about">
+          <h2>About</h2>
+          <p class="muted">Replace this paragraph with a short professional summary (2–4 lines). Example: "I’m a software engineer with 3+ years building web apps with JavaScript, React, and Node. I enjoy turning complex problems into simple, elegant solutions."</p>
+          <div style="margin-top:12px">
+            <span class="tag">JavaScript</span>
+            <span class="tag">React</span>
+            <span class="tag">HTML &amp; CSS</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Figma</span>
+          </div>
+        </section>
+
+        <section class="card projects" style="margin-top:18px">
+          <h2>Selected Projects</h2>
+
+          <article class="project">
+            <h3>Project One — Portfolio Website</h3>
+            <p class="muted">A personal portfolio site built with HTML/CSS and a sprinkle of JavaScript. Hosted on GitHub Pages.</p>
+            <div style="display:flex;gap:10px;align-items:center">
+              <a class="btn" href="#" onclick="openModal(event,'project1')">View details</a>
+              <a href="#" class="muted" style="text-decoration:underline">Source</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>Project Two — Task Manager App</h3>
+            <p class="muted">A responsive CRUD app demonstrating state management and local persistence.</p>
+            <div style="display:flex;gap:10px;align-items:center">
+              <a class="btn" href="#" onclick="openModal(event,'project2')">View details</a>
+              <a href="#" class="muted" style="text-decoration:underline">Live</a>
+            </div>
+          </article>
+
+        </section>
+
+        <section class="card" style="margin-top:18px">
+          <h2>Experience</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>Frontend Developer</strong> — Company Name <span class="muted">(2023 — Present)</span>
+              <div class="muted">Worked on building and optimizing customer-facing dashboards using React.</div>
+            </div>
+            <div class="timeline-item">
+              <strong>Intern — Web Dev</strong> — Another Company <span class="muted">(2022)</span>
+              <div class="muted">Built internal tools and contributed to UI improvements.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:18px">
+          <h2>Education</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>Bachelor of Technology</strong> — Institute Name <span class="muted">(2019 — 2023)</span>
+              <div class="muted">Major: Computer Engineering</div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <aside>
+        <section class="card contact">
+          <h2>Contact</h2>
+          <div class="contact-list">
+            <div><strong>Email</strong><div class="muted">your.email@example.com</div></div>
+            <div><strong>Phone</strong><div class="muted">+977-98XXXXXXXX</div></div>
+            <div><strong>Location</strong><div class="muted">Kathmandu, Nepal</div></div>
+            <div><strong>Links</strong>
+              <div class="muted" style="margin-top:6px">
+                <a href="#" style="color:var(--accent);text-decoration:none">GitHub</a> • <a href="#" style="color:var(--accent);text-decoration:none">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:18px">
+          <h3>Skills</h3>
+          <div style="margin-top:8px" class="skills">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">React</div>
+            <div class="skill">Node.js</div>
+            <div class="skill">SQL</div>
+            <div class="skill">Git</div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:18px">
+          <h3>Certifications</h3>
+          <div class="muted">Add any certifications or awards here (e.g., Coursera, Udemy, Hackathon winner).</div>
+        </section>
+
+      </aside>
     </div>
 
-    <div class="card">
-      <h2>Donate Now</h2>
-      <form id="donationForm">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <input type="number" placeholder="Amount in NPR" required />
-        <textarea placeholder="Message (Optional)"></textarea>
-        <button type="submit">Donate</button>
-      </form>
-      <p id="thanksMessage" style="display:none; color: green; font-weight: bold;">
-        Thank you for your support!
-      </p>
+    <footer>
+      <div>Designed &amp; built by Your Name — <span class="muted">Replace with your preferred copyright notice</span></div>
+    </footer>
+  </div>
+
+  <!-- Modal (simple) -->
+  <div id="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:20px">
+    <div id="modalCard" style="max-width:760px;width:100%;background:var(--card);border-radius:12px;padding:18px;color:#e6eef6">
+      <button onclick="closeModal()" style="float:right;background:none;border:0;color:var(--muted);font-weight:700">Close</button>
+      <div id="modalContent"></div>
     </div>
-  </main>
-
-  <section class="qr-section">
-    <h2>Scan to Donate</h2>
-    <img src="YOUR_IMAGE_NAME.jpg" alt="QR Codes for Khalti, eSewa, NIC Asia" />
-    <p style="font-weight: bold; margin-top: 0.5rem;">Ujwol Shakya<br>Phone no. 9767234456</p>
-  </section>
-
-  <footer>
-    &copy; <span id="year"></span> DogLife Foundation. All rights reserved.
-  </footer>
+  </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("donationForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      document.getElementById("thanksMessage").style.display = "block";
-      setTimeout(() => {
-        document.getElementById("donationForm").reset();
-        document.getElementById("thanksMessage").style.display = "none";
-      }, 3000);
-    });
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    function openModal(e,id){ e.preventDefault(); modal.style.display='flex';
+      if(id==='project1'){
+        modalContent.innerHTML = `<h2>Project One — Portfolio Website</h2><p class='muted'>Details: Built a responsive single-page portfolio using HTML/CSS and a touch of JS. Hosted on GitHub Pages. Key features: responsive layout, lightweight, accessible markup.</p><p class='muted'><strong>Tech:</strong> HTML, CSS, JavaScript</p>`;
+      } else if(id==='project2'){
+        modalContent.innerHTML = `<h2>Project Two — Task Manager</h2><p class='muted'>Details: A small CRUD app with local storage. Includes filtering, drag-and-drop, and keyboard shortcuts.</p><p class='muted'><strong>Tech:</strong> React (or vanilla JS), LocalStorage</p>`;
+      } else {
+        modalContent.innerHTML = `<h2>Project</h2><p class='muted'>Replace this with project information.</p>`;
+      }
+    }
+    function closeModal(){ modal.style.display='none'; modalContent.innerHTML=''; }
   </script>
 </body>
 </html>
